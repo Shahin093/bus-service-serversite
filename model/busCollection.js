@@ -43,20 +43,26 @@ const busCollectionSchema = mongoose.Schema({
         required: true,
         enum: {
             values: [
+                "13:00PM",
+                "14:00PM",
+                "15:00PM",
+                "16:00PM",
+                "17:00PM",
+                "18:00PM",
+                "19:00PM",
+                "20:00PM",
+                "21:00PM",
+                "22:00PM",
+                "23:00PM",
+                "24:00PM",
+                "6:00AM",
+                "7:00AM",
+                "8:00AM",
                 "9:00AM",
                 "10:00AM",
                 "11:00AM",
-                "12:00PM",
-                "1:00PM",
-                "2:00PM",
-                "3:00PM",
-                "4:00PM",
-                "5:00PM",
-                "6:00PM",
-                "7:00PM",
-                "8:00PM",
-                "9:00PM",
-                "10:00PM"
+                "12:00AM",
+
             ],
 
             message: "slot value can not be {VALUE}, must be available"
@@ -64,7 +70,8 @@ const busCollectionSchema = mongoose.Schema({
     },
     booked: {
         type: Array,
-        default: [],
+        required: [true, 'Please Selete your seat ?'],
+        default: []
     },
     totalSeat: {
         type: Number

@@ -1,20 +1,14 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
-const colors = require("colors");
+const express = require("express");
+const router = new express.Router();
 const nodemailer = require("nodemailer");
-const app = require("./app");
-
-// database connection
-mongoose.connect(process.env.DATABASE_LOCAL).then(() => {
-    console.log(`Database connection is successful `.red.bold);
-});
 
 
-app.post("/api/v1/register", (req, res) => {
-    console.log('shahin')
+
+// send mail
+router.post("/", (req, res) => {
+
     const { email } = req.body;
-    console.log(email)
-
+    console.log('shahin')
 
     try {
 
@@ -48,9 +42,5 @@ app.post("/api/v1/register", (req, res) => {
     }
 });
 
-// server
-const port = process.env.PORT || 8080;
 
-app.listen(port, () => {
-    console.log(`app is running on port ${port} `.yellow.bold)
-});
+module.exports = router;

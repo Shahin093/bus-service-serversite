@@ -7,6 +7,12 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 
 
+
+
+
+
+
+
 // verify jwt 
 // function verifyJWT(req, res, next) {
 //     const authHeader = req.headers.authorization;
@@ -111,7 +117,15 @@ const busCollection = require('./routes/busCollection.route');
 const buses = require('./routes/buses.route');
 const User = require('./model/user');
 const payRouter = require('./routes/pay.route');
+// const sendMainRoute = require('./routes/sendMail.route');
 // const port = 3000
+
+
+
+// send mail 
+
+
+// wqzhnexjwnobgzse   ( generate passwords )
 
 // middleware
 app.use(express.json());
@@ -136,6 +150,9 @@ app.use('/api/v1/busCollection', busCollection)
 // user create 
 app.use('/api/v1/user', userRouter);
 
+
+// send mail 
+// app.use('api/v1/register', sendMainRoute)
 
 // payment getwaye 
 app.use('api/v1/create-payment-intent', payRouter)
