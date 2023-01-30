@@ -9,11 +9,13 @@ mongoose.connect(process.env.DATABASE_LOCAL).then(() => {
     console.log(`Database connection is successful `.red.bold);
 });
 
+// server
+const port = process.env.PORT || 8080;
 
 app.post("/api/v1/register", (req, res) => {
-    console.log('shahin')
+    // console.log('shahin')
     const { email } = req.body;
-    console.log(email)
+    // console.log(email)
 
 
     try {
@@ -48,8 +50,7 @@ app.post("/api/v1/register", (req, res) => {
     }
 });
 
-// server
-const port = process.env.PORT || 8080;
+
 
 app.listen(port, () => {
     console.log(`app is running on port ${port} `.yellow.bold)
