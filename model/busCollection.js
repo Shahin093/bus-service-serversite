@@ -70,7 +70,7 @@ const busCollectionSchema = mongoose.Schema({
     },
     booked: {
         type: Array,
-        required: [true, 'Please Selete your seat ?'],
+        // required: [true, 'Please Selete your seat ?'],
         default: []
     },
     totalSeat: {
@@ -87,6 +87,10 @@ const busCollectionSchema = mongoose.Schema({
         type: String,
         default: "active"
 
+    },
+    pay: {
+        type: String,
+        default: "unPaid"
     },
     driver_staff: {
         type: Number,

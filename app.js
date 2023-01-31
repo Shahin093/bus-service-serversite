@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const BusBooking = require('./model/busBooking');
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
 
 
 
@@ -116,7 +116,7 @@ const userRouter = require('./routes/user.route');
 const busCollection = require('./routes/busCollection.route');
 const buses = require('./routes/buses.route');
 const User = require('./model/user');
-const payRouter = require('./routes/pay.route');
+// const payRouter = require('./routes/pay.route');
 // const sendMainRoute = require('./routes/sendMail.route');
 // const port = 3000
 
@@ -155,21 +155,8 @@ app.use('/api/v1/user', userRouter);
 // app.use('api/v1/register', sendMainRoute)
 
 // payment getwaye 
-app.use('api/v1/create-payment-intent', payRouter)
-// payment getwaye
-app.post('/api/v1/create-payment-intent', async (req, res, next) => {
-    const service = req.body;
-    // console.log('service', service)
-    const price = service?.price;
-    const amount = price * 100;
+// app.use('api/v1/create-payment-intent', payRouter)
 
-    const paymentIntent = await stripe?.paymentIntents?.create({
-        amount: amount,
-        currency: "usd",
-        payment_method_types: ['card']
-    });
-    // res.send({ clientSecret: paymentIntent?.client_secret })
-});
 
 
 module.exports = app;

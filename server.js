@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config();
 const colors = require("colors");
 const nodemailer = require("nodemailer");
 const app = require("./app");
-
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 // database connection
 mongoose.connect(process.env.DATABASE_LOCAL).then(() => {
     console.log(`Database connection is successful `.red.bold);
@@ -50,7 +50,26 @@ app.post("/api/v1/register", (req, res) => {
     }
 });
 
+// payment getwaye
+app.post('/create-payment-intent', async (req, res, next) => {
+    const service = req.body;
+    // console.log('service', service)
+    const price = service?.price;
+    const amount = price * 100;
+    try {
+        const paymentIntent = await stripe?.paymentIntents?.create({
+            amount: amount,
+            currency: "usd",
+            payment_method_types: ['card']
+        });
+        // console.log('payment Intent : ', paymentIntent);
+        res.status(201).json({ clientSecret: paymentIntent?.client_secret })
+    } catch (error) {
+        console.log("Error" + error);
+        res.status(401).json({ status: 401, error })
+    }
 
+});
 
 app.listen(port, () => {
     console.log(`app is running on port ${port} `.yellow.bold)
