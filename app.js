@@ -116,6 +116,7 @@ const userRouter = require('./routes/user.route');
 const busCollection = require('./routes/busCollection.route');
 const buses = require('./routes/buses.route');
 const User = require('./model/user');
+const review = require('./routes/review.route');
 // const payRouter = require('./routes/pay.route');
 // const sendMainRoute = require('./routes/sendMail.route');
 // const port = 3000
@@ -140,7 +141,8 @@ app.use('/api/v1/busBooking', busBookingRouter);
 // bus  <== create ==> update ==> Delete ==> 
 app.use('/api/v1/bus', buses)
 
-
+// rating 
+app.use('/api/v1/rating', review)
 // bus collection routing 
 app.use('/api/v1/busCollection', busCollection)
 
