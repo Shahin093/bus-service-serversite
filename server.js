@@ -5,10 +5,11 @@ const nodemailer = require("nodemailer");
 const app = require("./app");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 // database connection
-mongoose.connect(process.env.DATABASE_LOCAL).then(() => {
+mongoose.connect(process.env.DATABASE_SERVER).then(() => {
   console.log(`Database connection is successful `.red.bold);
 });
-
+// tMEV78HG9N6vtFr5
+// bus-services
 // server
 const port = process.env.PORT || 8080;
 
